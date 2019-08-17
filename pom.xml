@@ -4,15 +4,42 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.learn.zw</groupId>
-        <artifactId>zw-parent</artifactId>
+        <artifactId>learn-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.learn.zw</groupId>
     <artifactId>learn-ribbon</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1${env.env}</version>
     <packaging>jar</packaging>
     <name>learn-ribbon</name>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env.env>dev</env.env>
+                <env.env>-SNAPSHOT</env.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <env.env>uat</env.env>
+                <env.version>-SNAPSHOT</env.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <env.env>prd</env.env>
+                <env.env></env.env>
+            </properties>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
